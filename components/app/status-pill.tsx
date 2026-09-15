@@ -8,11 +8,16 @@ const LABELS: Record<AccountStatus | UpdateStatus, string> = {
   "in-progress": "In progress",
 };
 
+/**
+ * Three states, three weights of the same cherry — no green/amber borrowed
+ * from a generic status-badge palette. Solid = done, tinted = under way,
+ * outlined = still needs the customer, in that order of visual weight.
+ */
 const STYLES: Record<AccountStatus | UpdateStatus, string> = {
-  ready: "bg-emerald-50 text-emerald-700",
-  updated: "bg-emerald-50 text-emerald-700",
-  "needs-you": "bg-amber-50 text-amber-800",
+  ready: "bg-primary text-primary-foreground",
+  updated: "bg-primary text-primary-foreground",
   "in-progress": "bg-secondary text-primary",
+  "needs-you": "border border-primary text-primary",
 };
 
 export function StatusPill({

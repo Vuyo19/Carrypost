@@ -15,7 +15,7 @@ export function UpdatesList() {
             {NEW_ADDRESS.suburb}, {NEW_ADDRESS.city} · {NEW_ADDRESS.postalCode}
           </p>
         </div>
-        <span className="inline-flex shrink-0 items-center self-start rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 sm:self-auto">
+        <span className="inline-flex shrink-0 items-center self-start rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground sm:self-auto">
           {inProgressCount} in progress
         </span>
       </div>
