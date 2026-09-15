@@ -116,3 +116,57 @@
     @apply font-sans;
   }
 }
+
+/*
+ * "Signed in" theme — the product screens behind auth (sign up / log in,
+ * and everything under /home, /change-address, /updates).
+ *
+ * The marketing site is the brand's reversed cherry-on-white; the product
+ * itself is the other way round, a white surface with cherry reserved for
+ * actions and emphasis, matching the v2/v3 product concept decks. Scoped as
+ * a class rather than changed at :root so the marketing pages keep their
+ * full-bleed cherry untouched — every shadcn primitive built on
+ * bg-background/text-foreground/bg-primary etc. re-themes for free once
+ * this class wraps a subtree, no per-component overrides needed.
+ */
+.theme-app {
+  --background: #fff7f8;
+  --foreground: #17090d;
+  --card: #ffffff;
+  --card-foreground: #17090d;
+  --popover: #ffffff;
+  --popover-foreground: #17090d;
+
+  --primary: #c92a4a;
+  --primary-foreground: #ffffff;
+
+  --secondary: #fdedf0;
+  --secondary-foreground: #c92a4a;
+
+  --muted: #f3f0f1;
+  --muted-foreground: #6b6570;
+
+  --accent: #fdedf0;
+  --accent-foreground: #c92a4a;
+
+  --destructive: #dc2626;
+
+  --border: #e6e1e3;
+  --input: #e6e1e3;
+  --ring: rgb(201 42 74 / 45%);
+
+  --chart-1: #c92a4a;
+  --chart-2: #f7dde3;
+  --chart-3: #6b6570;
+  --chart-4: #17090d;
+  --chart-5: #e6e1e3;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #17090d;
+  --sidebar-primary: #c92a4a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fdedf0;
+  --sidebar-accent-foreground: #c92a4a;
+  --sidebar-border: #e6e1e3;
+  --sidebar-ring: rgb(201 42 74 / 45%);
+}

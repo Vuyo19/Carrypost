@@ -21,7 +21,7 @@ export function HeroDiagram() {
 
       <div className="h-8 w-px bg-border" aria-hidden="true" />
 
-      <div className="rounded-full border border-white/60 px-6 py-2.5 text-center">
+      <div className="rounded-full border border-primary/60 px-6 py-2.5 text-center">
         <p className="text-sm font-semibold">Carrypost</p>
         <p className="text-[11px] text-muted-foreground">carry the change</p>
       </div>

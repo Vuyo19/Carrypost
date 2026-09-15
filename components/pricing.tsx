@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { PRICING_ROWS } from "@/lib/site-data";
 
@@ -26,7 +28,7 @@ export function Pricing() {
         </dl>
 
         <Button
-          render={<a href="#" />}
+          render={<Link href="/sign-up" />}
           nativeButton={false}
           variant="outline"
           className="mt-10 h-11 rounded-full border-white/70 bg-transparent px-8 text-base text-foreground hover:bg-white hover:text-primary-foreground"

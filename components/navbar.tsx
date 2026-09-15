@@ -31,7 +31,7 @@ export function Navbar() {
           </nav>
 
           <Button
-            render={<a href="#pricing" />}
+            render={<Link href="/sign-up" />}
             nativeButton={false}
             variant="outline"
             className="rounded-full border-white/70 bg-transparent px-5 text-base text-foreground hover:bg-white hover:text-primary-foreground"
@@ -63,13 +63,13 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#pricing"
+          <Link
+            href="/sign-up"
             onClick={() => setOpen(false)}
             className="mt-2 rounded-full border border-white/70 px-4 py-3 text-center text-base font-medium text-foreground"
           >
             Get started
-          </a>
+          </Link>
         </nav>
       )}
     </header>

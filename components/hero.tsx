@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { HeroDiagram } from "@/components/hero-diagram";
 
 export function Hero() {
@@ -21,13 +23,13 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <a
-            href="#pricing"
+          <Link
+            href="/sign-up"
             className="inline-flex items-center gap-2 text-base font-semibold"
           >
             Update my address
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
           <a
             href="#how-it-works"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
