@@ -54,6 +54,34 @@ export const DEFAULT_SELECTED_ACCOUNT_IDS = [
   "mtn",
 ];
 
+/**
+ * The providers Carrypost is allowlisted to dispatch and update — the
+ * "10–20 South African providers" the concept brief scopes the MVP to.
+ * Offered as the alternative to Gmail discovery on the Connect step: a
+ * customer who doesn't want to grant inbox access picks straight from this
+ * catalog instead. Banks, the medical scheme and SARS stay "needs-you"
+ * regardless of how the account was added — that reflects FICA/KYC and
+ * verification requirements on the provider's side (see the Concept
+ * Brief's Limitations section), not anything about the discovery method.
+ */
+export const SUPPORTED_PROVIDERS: Account[] = [
+  { id: "clicks", name: "Clicks", category: "Retail", status: "ready" },
+  { id: "woolworths", name: "Woolworths", category: "Retail", status: "ready" },
+  { id: "pick-n-pay", name: "Pick n Pay", category: "Retail", status: "ready" },
+  { id: "afrihost", name: "Afrihost", category: "Internet", status: "ready" },
+  { id: "webafrica", name: "Webafrica", category: "Internet", status: "ready" },
+  { id: "virgin-active", name: "Virgin Active", category: "Gym", status: "ready" },
+  { id: "planet-fitness", name: "Planet Fitness", category: "Gym", status: "ready" },
+  { id: "mtn", name: "MTN", category: "Mobile", status: "ready" },
+  { id: "vodacom", name: "Vodacom", category: "Mobile", status: "ready" },
+  { id: "telkom", name: "Telkom", category: "Mobile", status: "ready" },
+  { id: "outsurance", name: "OUTsurance", category: "Insurance", status: "ready" },
+  { id: "discovery", name: "Discovery", category: "Medical scheme", status: "needs-you" },
+  { id: "standard-bank", name: "Standard Bank", category: "Bank", status: "needs-you" },
+  { id: "absa", name: "Absa", category: "Bank", status: "needs-you" },
+  { id: "sars", name: "SARS", category: "Government", status: "needs-you" },
+];
+
 export const PRICE = {
   amount: 149,
   currency: "R",

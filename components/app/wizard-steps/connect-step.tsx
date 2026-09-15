@@ -13,7 +13,11 @@ const REQUESTED_ACCESS = [
   "View sender and account-related emails",
 ];
 
-export function ConnectStep({ onNext }: { onNext: () => void }) {
+export function ConnectStep({
+  onNext,
+}: {
+  onNext: (method: "gmail" | "manual") => void;
+}) {
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_380px]">
       <div>
@@ -78,13 +82,38 @@ export function ConnectStep({ onNext }: { onNext: () => void }) {
           ))}
         </ul>
 
-        <Button onClick={onNext} className="mt-6 h-11 w-full rounded-full">
+        <Button
+          onClick={() => onNext("gmail")}
+          className="mt-6 h-11 w-full rounded-full"
+        >
           Continue to Google
         </Button>
 
         <p className="mt-4 text-xs text-muted-foreground">
           You can disconnect Gmail later.
         </p>
+
+        <div className="mt-6 flex items-center gap-3 text-xs text-muted-foreground">
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+          or
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        </div>
+
+        <p className="mt-6 text-sm font-semibold">
+          Don&apos;t want to connect email?
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Add accounts yourself from the providers Carrypost is already
+          allowlisted to update.
+        </p>
+
+        <Button
+          onClick={() => onNext("manual")}
+          variant="outline"
+          className="mt-4 h-11 w-full rounded-full"
+        >
+          Choose from supported providers
+        </Button>
       </div>
     </div>
   );

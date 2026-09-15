@@ -5,29 +5,35 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StatusPill } from "@/components/app/status-pill";
-import { ACCOUNTS_FOUND } from "@/lib/app-data";
+import type { Account } from "@/lib/app-data";
 import { cn } from "@/lib/utils";
 
 type Filter = "all" | "ready" | "needs-you";
 
 export function AccountsStep({
+  accounts,
+  heading,
+  description,
   selectedIds,
   onToggle,
   onNext,
 }: {
+  accounts: Account[];
+  heading: string;
+  description: string;
   selectedIds: string[];
   onToggle: (id: string) => void;
   onNext: () => void;
 }) {
   const [filter, setFilter] = useState<Filter>("all");
 
-  const readyCount = ACCOUNTS_FOUND.filter((a) => a.status === "ready").length;
-  const needsYouCount = ACCOUNTS_FOUND.length - readyCount;
-  const guidedRemaining = ACCOUNTS_FOUND.filter(
+  const readyCount = accounts.filter((a) => a.status === "ready").length;
+  const needsYouCount = accounts.length - readyCount;
+  const guidedRemaining = accounts.filter(
     (a) => a.status === "needs-you" && !selectedIds.includes(a.id)
   ).length;
 
-  const visible = ACCOUNTS_FOUND.filter((a) =>
+  const visible = accounts.filter((a) =>
     filter === "all" ? true : a.status === filter
   );
 
@@ -37,17 +43,14 @@ export function AccountsStep({
         Step 3
       </p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-        We found {ACCOUNTS_FOUND.length} accounts that may need your new
-        address
+        {heading}
       </h1>
-      <p className="mt-4 max-w-lg text-muted-foreground">
-        Choose who Carrypost should update. You stay in control.
-      </p>
+      <p className="mt-4 max-w-lg text-muted-foreground">{description}</p>
 
       <div className="mt-8 flex flex-wrap gap-2">
         {(
           [
-            { key: "all", label: `All ${ACCOUNTS_FOUND.length}` },
+            { key: "all", label: `All ${accounts.length}` },
             { key: "ready", label: `Ready ${readyCount}` },
             { key: "needs-you", label: `Needs you ${needsYouCount}` },
           ] as { key: Filter; label: string }[]
@@ -100,7 +103,11 @@ export function AccountsStep({
             {guidedRemaining} left for guided updates
           </span>
         </div>
-        <Button onClick={onNext} className="h-11 rounded-full px-8">
+        <Button
+          onClick={onNext}
+          disabled={selectedIds.length === 0}
+          className="h-11 rounded-full px-8"
+        >
           Review changes
         </Button>
       </div>
