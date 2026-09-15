@@ -13,7 +13,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-8">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link href="/" className="text-xl font-semibold tracking-tight">
           Carrypost.
         </Link>
 
@@ -23,7 +23,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-foreground/90 transition-colors hover:text-foreground"
+                className="text-base text-foreground/90 transition-colors hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -34,7 +34,7 @@ export function Navbar() {
             render={<a href="#pricing" />}
             nativeButton={false}
             variant="outline"
-            className="rounded-full border-white/70 bg-transparent px-5 text-foreground hover:bg-white hover:text-primary-foreground"
+            className="rounded-full border-white/70 bg-transparent px-5 text-base text-foreground hover:bg-white hover:text-primary-foreground"
           >
             Get started
           </Button>
