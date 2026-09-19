@@ -65,7 +65,7 @@ export function PayStep({
           </p>
         </div>
 
-        <div className="rounded-xl bg-secondary p-6">
+        <div className="rounded-xl border border-primary/25 p-6">
           <h2 className="font-semibold">Payment</h2>
 
           <div className="mt-5 flex flex-col gap-2">

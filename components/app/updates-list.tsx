@@ -8,7 +8,7 @@ const inProgressCount = UPDATE_ROWS.filter(
 export function UpdatesList() {
   return (
     <div>
-      <div className="flex flex-col gap-4 rounded-xl bg-secondary p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-primary/25 p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg font-semibold">{NEW_ADDRESS.line1}</p>
           <p className="text-sm text-muted-foreground">

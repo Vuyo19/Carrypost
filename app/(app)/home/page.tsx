@@ -15,7 +15,7 @@ export default function HomePage() {
       </p>
 
       <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
-        <div className="rounded-xl bg-secondary p-8">
+        <div className="rounded-xl border border-primary/30 p-8">
           <p className="text-xs font-semibold tracking-wide text-primary uppercase">
             Changed address?
           </p>

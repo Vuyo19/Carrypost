@@ -32,7 +32,7 @@ export function ConnectStep({
           from your inbox.
         </p>
 
-        <div className="mt-10 rounded-xl bg-secondary p-6">
+        <div className="mt-10 rounded-xl border border-primary/25 p-6">
           <p className="text-sm font-semibold text-primary">
             What Carrypost looks for
           </p>

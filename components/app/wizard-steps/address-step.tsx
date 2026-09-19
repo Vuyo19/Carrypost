@@ -47,7 +47,7 @@ export function AddressStep({ onNext }: { onNext: () => void }) {
         </form>
       </div>
 
-      <div className="h-fit rounded-xl bg-secondary p-6">
+      <div className="h-fit rounded-xl border border-primary/25 p-6">
         <p className="text-sm font-semibold text-primary">
           We found your current address in some accounts
         </p>
