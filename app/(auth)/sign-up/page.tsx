@@ -1,9 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { OAuthButtons } from "@/components/app/oauth-buttons";
 
 export default function SignUpPage() {
   return (
@@ -17,56 +14,13 @@ export default function SignUpPage() {
         </p>
       </div>
 
-      <div className="mt-8 flex border-b border-border text-sm">
-        <span className="border-b-2 border-primary px-1 pb-3 font-medium text-primary">
-          Sign up
-        </span>
-        <Link
-          href="/log-in"
-          className="ml-8 px-1 pb-3 text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Log in
-        </Link>
+      <div className="mt-8">
+        <OAuthButtons />
       </div>
 
-      <form className="mt-6 flex flex-col gap-5">
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email address</Label>
-          <Input id="email" type="email" placeholder="you@example.com" />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" placeholder="Create a password" />
-        </div>
-
-        <label className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Checkbox defaultChecked />I agree to the Terms and Privacy Policy
-        </label>
-
-        <Button
-          render={<Link href="/home" />}
-          nativeButton={false}
-          className="h-11 w-full rounded-full text-base"
-        >
-          Create account
-        </Button>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="h-px flex-1 bg-border" aria-hidden="true" />
-          or
-          <span className="h-px flex-1 bg-border" aria-hidden="true" />
-        </div>
-
-        <Button
-          render={<a href="#" />}
-          nativeButton={false}
-          variant="outline"
-          className="h-11 w-full rounded-full text-base"
-        >
-          Continue with Google
-        </Button>
-      </form>
+      <p className="mt-6 text-center text-xs text-muted-foreground">
+        By continuing, you agree to Carrypost&apos;s Terms and Privacy Policy.
+      </p>
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         Already have an account?{" "}
