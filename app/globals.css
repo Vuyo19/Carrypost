@@ -130,7 +130,7 @@
  * this class wraps a subtree, no per-component overrides needed.
  */
 .theme-app {
-  --background: #fff7f8;
+  --background: #ffffff;
   --foreground: #17090d;
   --card: #ffffff;
   --card-foreground: #17090d;
