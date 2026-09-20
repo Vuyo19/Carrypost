@@ -102,6 +102,14 @@ export const UPDATE_ROWS: UpdateRow[] = [
   { provider: "Standard Bank", method: "Guided verification", status: "needs-you" },
 ];
 
+/** Same copy shown twice: in the Connect step's own "Requested access"
+ *  list, and in the mock Google consent screen it opens — kept in one
+ *  place so the two never drift apart. */
+export const REQUESTED_SCOPES = [
+  "Read-only access to identify providers",
+  "View sender and account-related emails",
+];
+
 export const WIZARD_STEPS = [
   { number: 1, label: "Connect" },
   { number: 2, label: "Address" },

@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { ScanSearch } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { GoogleAuthModal } from "@/components/app/google-auth-modal";
+import { REQUESTED_SCOPES } from "@/lib/app-data";
 
 const LOOKS_FOR = [
   "Receipts, statements and welcome emails from providers",
@@ -8,16 +13,13 @@ const LOOKS_FOR = [
   "Signals that an account may still use your old address",
 ];
 
-const REQUESTED_ACCESS = [
-  "Read-only access to identify providers",
-  "View sender and account-related emails",
-];
-
 export function ConnectStep({
   onNext,
 }: {
   onNext: (method: "gmail" | "manual") => void;
 }) {
+  const [googleModalOpen, setGoogleModalOpen] = useState(false);
+
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_380px]">
       <div>
@@ -64,7 +66,7 @@ export function ConnectStep({
           Requested access
         </p>
         <ul className="mt-3 flex flex-col gap-3">
-          {REQUESTED_ACCESS.map((item) => (
+          {REQUESTED_SCOPES.map((item) => (
             <li key={item} className="flex items-center gap-2 text-sm">
               <span className="flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-primary bg-primary text-primary-foreground">
                 <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none">
@@ -83,7 +85,7 @@ export function ConnectStep({
         </ul>
 
         <Button
-          onClick={() => onNext("gmail")}
+          onClick={() => setGoogleModalOpen(true)}
           className="mt-6 h-11 w-full rounded-full"
         >
           Continue to Google
@@ -115,6 +117,15 @@ export function ConnectStep({
           Choose from supported providers
         </Button>
       </div>
+
+      <GoogleAuthModal
+        open={googleModalOpen}
+        onCancel={() => setGoogleModalOpen(false)}
+        onAllow={() => {
+          setGoogleModalOpen(false);
+          onNext("gmail");
+        }}
+      />
     </div>
   );
 }
