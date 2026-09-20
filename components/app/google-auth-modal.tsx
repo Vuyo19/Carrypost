@@ -88,7 +88,7 @@ export function GoogleAuthModal({
             onClick={onAllow}
             className="rounded-md bg-[#1a73e8] px-6 py-2 text-sm font-medium text-white hover:bg-[#1765cc]"
           >
-            Continue
+            Authorize
           </button>
         </div>
       </div>

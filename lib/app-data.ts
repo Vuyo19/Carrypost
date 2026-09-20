@@ -108,6 +108,7 @@ export const UPDATE_ROWS: UpdateRow[] = [
 export const REQUESTED_SCOPES = [
   "Read-only access to identify providers",
   "View sender and account-related emails",
+  "Send emails to providers on your behalf",
 ];
 
 export const WIZARD_STEPS = [
