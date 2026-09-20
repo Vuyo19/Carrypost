@@ -6,7 +6,6 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { DocumentAttachments } from "@/components/app/wizard-steps/document-attachments";
 import { StatusPill } from "@/components/app/status-pill";
 import type { Account } from "@/lib/app-data";
 import { cn } from "@/lib/utils";
@@ -20,8 +19,6 @@ export function AccountsStep({
   searchable = false,
   selectedIds,
   onToggle,
-  attachments,
-  onAttach,
   onNext,
 }: {
   accounts: Account[];
@@ -33,8 +30,6 @@ export function AccountsStep({
   searchable?: boolean;
   selectedIds: string[];
   onToggle: (id: string) => void;
-  attachments: Record<string, File | null>;
-  onAttach: (providerId: string, file: File | null) => void;
   onNext: () => void;
 }) {
   const [filter, setFilter] = useState<Filter>("all");
@@ -52,13 +47,6 @@ export function AccountsStep({
   const guidedRemaining = accounts.filter(
     (a) => a.status === "needs-you" && !selectedIds.includes(a.id)
   ).length;
-
-  // Independent of the current search/filter — a provider selected earlier
-  // shouldn't lose its attach control just because it's scrolled out of the
-  // filtered list right now.
-  const selectedGuidedProviders = accounts.filter(
-    (a) => a.status === "needs-you" && selectedIds.includes(a.id)
-  );
 
   const visible = searched.filter((a) =>
     filter === "all" ? true : a.status === filter
@@ -159,12 +147,6 @@ export function AccountsStep({
           </ul>
         </>
       )}
-
-      <DocumentAttachments
-        providers={selectedGuidedProviders}
-        attachments={attachments}
-        onAttach={onAttach}
-      />
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
         <div className="text-sm">

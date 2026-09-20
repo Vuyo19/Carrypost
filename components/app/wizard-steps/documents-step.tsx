@@ -2,6 +2,7 @@
 
 import { Paperclip, X } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import type { Account } from "@/lib/app-data";
 
 /** Mirrors CarrypostBackend's document_relay.ALLOWED_CONTENT_TYPES exactly —
@@ -10,41 +11,50 @@ import type { Account } from "@/lib/app-data";
 const ACCEPTED_TYPES = "application/pdf,image/jpeg,image/png";
 
 /**
- * Shown only for selected providers that need guided verification — a
- * subset of the account list above it, not a separate step, since the two
- * are really one decision ("who, and what do they need from me").
+ * Its own step (not a subsection of Accounts) so a customer with guided
+ * providers gets a clear, single-purpose screen for the one thing that's
+ * different about them — attaching proof — rather than it competing for
+ * attention with the account-selection list above it.
  *
- * This is still local component state, same as the rest of the wizard (no
- * backend wiring yet — see change-address-wizard.tsx). But it's shaped to
- * match CarrypostBackend's real contract exactly: one file per provider,
- * PDF/JPEG/PNG only, attached to the outgoing email and never written
- * anywhere — see that backend's app/services/document_relay.py, which this
- * UI's copy is deliberately restating, not just decorating with reassuring
- * words.
+ * change-address-wizard.tsx skips this step entirely when nothing selected
+ * in Accounts actually needs guided verification — this component only
+ * ever renders once `providers` is non-empty.
+ *
+ * Still local component state, same as the rest of the wizard (no
+ * address-changes wiring yet). Shaped to match CarrypostBackend's real
+ * contract exactly: one file per provider, PDF/JPEG/PNG only, attached to
+ * the dispatch email and never written anywhere — see that backend's
+ * app/services/document_relay.py, which this UI's copy restates rather
+ * than just decorates with reassuring words.
  */
-export function DocumentAttachments({
+export function DocumentsStep({
   providers,
   attachments,
   onAttach,
+  onNext,
 }: {
   providers: Account[];
   attachments: Record<string, File | null>;
   onAttach: (providerId: string, file: File | null) => void;
+  onNext: () => void;
 }) {
-  if (providers.length === 0) return null;
-
   const attachedCount = providers.filter((p) => attachments[p.id]).length;
 
   return (
-    <div className="mt-10">
-      <h2 className="text-lg font-semibold">Documents</h2>
-      <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+    <div>
+      <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+        Step 4
+      </p>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        Proof of address
+      </h1>
+      <p className="mt-4 max-w-lg text-muted-foreground">
         These providers need proof of address before they can act. Attach it
         below — Carrypost sends it straight to them in the same email and
         never keeps a copy.
       </p>
 
-      <ul className="mt-6 divide-y divide-border border-y border-border">
+      <ul className="mt-8 divide-y divide-border border-y border-border">
         {providers.map((provider) => {
           const file = attachments[provider.id] ?? null;
           const inputId = `proof-${provider.id}`;
@@ -90,10 +100,15 @@ export function DocumentAttachments({
         })}
       </ul>
 
-      <p className="mt-3 text-sm text-muted-foreground">
-        {attachedCount} of {providers.length} attached — the rest can still be
-        completed by phone or portal if that suits you better.
-      </p>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+        <p className="text-sm text-muted-foreground">
+          {attachedCount} of {providers.length} attached — the rest can still
+          be completed by phone or portal if that suits you better.
+        </p>
+        <Button onClick={onNext} className="h-11 rounded-full px-8">
+          Continue
+        </Button>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function PayStep({
   return (
     <div>
       <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-        Step 4
+        Step 5
       </p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
         Pay once. Get the admin moving.

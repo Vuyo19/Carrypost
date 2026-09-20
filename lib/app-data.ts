@@ -115,6 +115,7 @@ export const WIZARD_STEPS = [
   { number: 1, label: "Connect" },
   { number: 2, label: "Address" },
   { number: 3, label: "Accounts" },
-  { number: 4, label: "Pay" },
-  { number: 5, label: "Done" },
+  { number: 4, label: "Documents" },
+  { number: 5, label: "Pay" },
+  { number: 6, label: "Done" },
 ] as const;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AccountsStep } from "@/components/app/wizard-steps/accounts-step";
 import { AddressStep } from "@/components/app/wizard-steps/address-step";
 import { ConnectStep } from "@/components/app/wizard-steps/connect-step";
+import { DocumentsStep } from "@/components/app/wizard-steps/documents-step";
 import { DoneStep } from "@/components/app/wizard-steps/done-step";
 import { PayStep } from "@/components/app/wizard-steps/pay-step";
 import { WizardStepper } from "@/components/app/wizard-stepper";
@@ -27,6 +28,12 @@ type DiscoveryMethod = "gmail" | "manual";
  * for someone who doesn't want to grant inbox access, picking straight
  * from the providers Carrypost is allowlisted to dispatch to — a bigger
  * catalog, nothing pre-selected since nothing has been "found" yet.
+ *
+ * Step 4 (Documents) is its own screen, not folded into Accounts — but it
+ * only exists for someone who actually selected a guided-verification
+ * provider. Nobody with an all-"ready" selection should see a step about
+ * paperwork that doesn't apply to them, so leaving Accounts skips straight
+ * to Pay when selectedGuidedProviders is empty.
  */
 export function ChangeAddressWizard() {
   const [step, setStep] = useState(1);
@@ -39,6 +46,10 @@ export function ChangeAddressWizard() {
 
   const accounts =
     discoveryMethod === "gmail" ? ACCOUNTS_FOUND : SUPPORTED_PROVIDERS;
+
+  const selectedGuidedProviders = accounts.filter(
+    (a) => a.status === "needs-you" && selectedIds.includes(a.id)
+  );
 
   const toggleAccount = (id: string) => {
     setSelectedIds((prev) =>
@@ -56,9 +67,11 @@ export function ChangeAddressWizard() {
     setStep(2);
   };
 
-  const guidedCount = accounts.filter(
-    (a) => a.status === "needs-you" && selectedIds.includes(a.id)
-  ).length;
+  const leaveAccounts = () => {
+    setStep(selectedGuidedProviders.length > 0 ? 4 : 5);
+  };
+
+  const guidedCount = selectedGuidedProviders.length;
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8">
@@ -84,19 +97,25 @@ export function ChangeAddressWizard() {
           searchable={discoveryMethod === "manual"}
           selectedIds={selectedIds}
           onToggle={toggleAccount}
-          attachments={attachments}
-          onAttach={attachDocument}
-          onNext={() => setStep(4)}
+          onNext={leaveAccounts}
         />
       )}
       {step === 4 && (
-        <PayStep
-          selectedCount={selectedIds.length}
-          guidedCount={guidedCount}
+        <DocumentsStep
+          providers={selectedGuidedProviders}
+          attachments={attachments}
+          onAttach={attachDocument}
           onNext={() => setStep(5)}
         />
       )}
-      {step === 5 && <DoneStep />}
+      {step === 5 && (
+        <PayStep
+          selectedCount={selectedIds.length}
+          guidedCount={guidedCount}
+          onNext={() => setStep(6)}
+        />
+      )}
+      {step === 6 && <DoneStep />}
     </div>
   );
 }
