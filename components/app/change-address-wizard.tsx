@@ -35,6 +35,7 @@ export function ChangeAddressWizard() {
   const [selectedIds, setSelectedIds] = useState<string[]>(
     DEFAULT_SELECTED_ACCOUNT_IDS
   );
+  const [attachments, setAttachments] = useState<Record<string, File | null>>({});
 
   const accounts =
     discoveryMethod === "gmail" ? ACCOUNTS_FOUND : SUPPORTED_PROVIDERS;
@@ -43,6 +44,10 @@ export function ChangeAddressWizard() {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((existing) => existing !== id) : [...prev, id]
     );
+  };
+
+  const attachDocument = (providerId: string, file: File | null) => {
+    setAttachments((prev) => ({ ...prev, [providerId]: file }));
   };
 
   const startConnect = (method: DiscoveryMethod) => {
@@ -79,6 +84,8 @@ export function ChangeAddressWizard() {
           searchable={discoveryMethod === "manual"}
           selectedIds={selectedIds}
           onToggle={toggleAccount}
+          attachments={attachments}
+          onAttach={attachDocument}
           onNext={() => setStep(4)}
         />
       )}
