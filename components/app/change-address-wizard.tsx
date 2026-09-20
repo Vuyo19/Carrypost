@@ -76,6 +76,7 @@ export function ChangeAddressWizard() {
               ? "Choose who Carrypost should update. You stay in control."
               : "These are the providers Carrypost is allowlisted to dispatch and update. Select who should receive your new address."
           }
+          searchable={discoveryMethod === "manual"}
           selectedIds={selectedIds}
           onToggle={toggleAccount}
           onNext={() => setStep(4)}
