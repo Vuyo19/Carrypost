@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useMeContext } from "@/lib/me-context";
+import { initialsFor } from "@/lib/use-me";
 import { cn } from "@/lib/utils";
 
 const APP_NAV_LINKS = [
@@ -13,6 +15,7 @@ const APP_NAV_LINKS = [
 
 export function AppNavbar() {
   const pathname = usePathname();
+  const me = useMeContext();
 
   return (
     <header className="border-b border-border bg-background">
@@ -43,10 +46,13 @@ export function AppNavbar() {
           </nav>
         </div>
 
-        {/* Placeholder for the signed-in member — this is a UI concept with
-            no real auth, so the initials are fixed rather than derived. */}
-        <div className="flex size-9 items-center justify-center rounded-full border border-border text-xs font-semibold">
-          VK
+        {/* AppLayout only renders this navbar once useMe() resolves to an
+            authenticated session, so `me` is never null here in practice. */}
+        <div
+          className="flex size-9 items-center justify-center rounded-full border border-border text-xs font-semibold"
+          title={me?.email}
+        >
+          {me ? initialsFor(me) : ""}
         </div>
       </div>
     </header>
