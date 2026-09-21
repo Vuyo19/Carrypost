@@ -2,13 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PRICE } from "@/lib/app-data";
+import {
+  CHANGE_TYPE_UPDATE_LABELS,
+  NEW_VALUE_NOUNS,
+  PRICE,
+  type ChangeType,
+} from "@/lib/app-data";
 
 export function PayStep({
+  changeType,
   selectedCount,
   guidedCount,
   onNext,
 }: {
+  changeType: ChangeType;
   selectedCount: number;
   guidedCount: number;
   onNext: () => void;
@@ -30,7 +37,7 @@ export function PayStep({
           <h2 className="font-semibold">Your change</h2>
 
           <div className="mt-4 flex items-center justify-between border-b border-border pb-4 text-sm">
-            <span>Address update</span>
+            <span>{CHANGE_TYPE_UPDATE_LABELS[changeType]}</span>
             <span className="font-semibold">
               {PRICE.currency}
               {PRICE.amount}.00
@@ -86,7 +93,7 @@ export function PayStep({
 
           <label className="mt-5 flex items-center gap-2 text-sm">
             <Checkbox defaultChecked />I confirm these providers can receive
-            my new address
+            my {NEW_VALUE_NOUNS[changeType]}
           </label>
 
           <Button onClick={onNext} className="mt-6 h-11 w-full rounded-full">

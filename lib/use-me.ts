@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
  * what actually authenticates this request, not anything in the JS.
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/v1";
 
 export type ConnectedAccount = {
   provider: "google" | "microsoft" | "apple";

@@ -18,7 +18,7 @@ import { AppleIcon, GoogleIcon, MicrosoftIcon } from "@/components/app/brand-ico
  * and the provider will reject it — that's expected, not a frontend bug.
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/v1";
 
 const PROVIDERS = [
   { id: "google", label: "Continue with Google", Icon: GoogleIcon },

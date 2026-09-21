@@ -12,7 +12,9 @@ import { WizardStepper } from "@/components/app/wizard-stepper";
 import {
   ACCOUNTS_FOUND,
   DEFAULT_SELECTED_ACCOUNT_IDS,
+  NEW_VALUE_NOUNS,
   SUPPORTED_PROVIDERS,
+  type ChangeType,
 } from "@/lib/app-data";
 
 type DiscoveryMethod = "gmail" | "manual";
@@ -29,6 +31,12 @@ type DiscoveryMethod = "gmail" | "manual";
  * from the providers Carrypost is allowlisted to dispatch to — a bigger
  * catalog, nothing pre-selected since nothing has been "found" yet.
  *
+ * Step 2 (Address) also picks *what kind* of change this is — address,
+ * phone number, or surname (CarrypostBackend's AddressChange.change_type
+ * now supports all three). Discovery doesn't branch on it: which
+ * companies to notify is the same question regardless of what's actually
+ * changing about the person.
+ *
  * Step 4 (Documents) is its own screen, not folded into Accounts — but it
  * only exists for someone who actually selected a guided-verification
  * provider. Nobody with an all-"ready" selection should see a step about
@@ -39,6 +47,7 @@ export function ChangeAddressWizard() {
   const [step, setStep] = useState(1);
   const [discoveryMethod, setDiscoveryMethod] =
     useState<DiscoveryMethod>("gmail");
+  const [changeType, setChangeType] = useState<ChangeType>("address");
   const [selectedIds, setSelectedIds] = useState<string[]>(
     DEFAULT_SELECTED_ACCOUNT_IDS
   );
@@ -80,19 +89,25 @@ export function ChangeAddressWizard() {
       </div>
 
       {step === 1 && <ConnectStep onNext={startConnect} />}
-      {step === 2 && <AddressStep onNext={() => setStep(3)} />}
+      {step === 2 && (
+        <AddressStep
+          changeType={changeType}
+          onChangeTypeChange={setChangeType}
+          onNext={() => setStep(3)}
+        />
+      )}
       {step === 3 && (
         <AccountsStep
           accounts={accounts}
           heading={
             discoveryMethod === "gmail"
-              ? `We found ${accounts.length} accounts that may need your new address`
+              ? `We found ${accounts.length} accounts that may need your ${NEW_VALUE_NOUNS[changeType]}`
               : "Choose from Carrypost's supported providers"
           }
           description={
             discoveryMethod === "gmail"
               ? "Choose who Carrypost should update. You stay in control."
-              : "These are the providers Carrypost is allowlisted to dispatch and update. Select who should receive your new address."
+              : `These are the providers Carrypost is allowlisted to dispatch and update. Select who should receive your ${NEW_VALUE_NOUNS[changeType]}.`
           }
           searchable={discoveryMethod === "manual"}
           selectedIds={selectedIds}
@@ -110,6 +125,7 @@ export function ChangeAddressWizard() {
       )}
       {step === 5 && (
         <PayStep
+          changeType={changeType}
           selectedCount={selectedIds.length}
           guidedCount={guidedCount}
           onNext={() => setStep(6)}

@@ -31,6 +31,40 @@ export const NEW_ADDRESS = {
   effectiveFrom: "15 September 2026",
 };
 
+/** What Carrypost can carry a change to — the Address step's dropdown.
+ *  Backend support for all three now exists (CarrypostBackend's
+ *  AddressChange.change_type); discovery itself doesn't depend on which
+ *  one is picked — "who has this person's details on file" is the same
+ *  question regardless of what's changing about them. */
+export const CHANGE_TYPES = [
+  { id: "address", label: "Address" },
+  { id: "phone_number", label: "Phone number" },
+  { id: "surname", label: "Surname" },
+] as const;
+
+export type ChangeType = (typeof CHANGE_TYPES)[number]["id"];
+
+/** Shared copy fragments keyed by change type — one source so the
+ *  Accounts heading, Pay step, and anywhere else that mentions "your new
+ *  X" can't drift out of sync with each other. */
+export const NEW_VALUE_NOUNS: Record<ChangeType, string> = {
+  address: "new address",
+  phone_number: "new phone number",
+  surname: "new surname",
+};
+
+export const CHANGE_TYPE_UPDATE_LABELS: Record<ChangeType, string> = {
+  address: "Address update",
+  phone_number: "Phone number update",
+  surname: "Surname update",
+};
+
+export const CURRENT_PHONE_NUMBER = "071 555 0134";
+export const NEW_PHONE_NUMBER = "082 918 4420";
+
+export const CURRENT_SURNAME = "Mahlangu";
+export const NEW_SURNAME = "Kakaza";
+
 export const ACCOUNTS_FOUND: Account[] = [
   { id: "clicks", name: "Clicks", category: "Retail", status: "ready" },
   { id: "woolworths", name: "Woolworths", category: "Retail", status: "ready" },
