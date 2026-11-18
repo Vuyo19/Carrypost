@@ -2,6 +2,12 @@
 
 Carrypost is a home for short fiction — longer than an article, shorter than a book, written to be read in one sitting, right in your browser. No downloads, no apps. The shelf currently leans into South African comedy and satire, with new stories added regularly for Carrypost Ultra members.
 
+## Demo & recordings
+
+A walkthrough of the landing page (`Carrypost_LandingPage.mov`), along with screen recordings of 2 glitches found while building and testing this — including the RevenueCat offering bug described below — are in this Google Drive folder:
+
+**[Carrypost demo & recordings](https://drive.google.com/drive/folders/1GHoJtCNvjH0_YlQ8lXQ5fU55im_77FLn?usp=sharing)**
+
 ## How it uses RevenueCat
 
 The web app integrates RevenueCat's **Web Billing SDK** (`@revenuecat/purchases-js`), with entitlement checks reading from real `CustomerInfo` rather than any app-side assumption about who's paid, and RevenueCat's own hosted paywall rendering handling the checkout UI entirely. A live 3-variant RevenueCat Experiment drives which paywall design a given customer sees.
