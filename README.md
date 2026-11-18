@@ -16,10 +16,6 @@ On top of that sits a custom client-side weighted traffic splitter, modeled on a
 
 Useful when you want to lean harder into a design you suspect is winning before the experiment's own results catch up. A session routed through this no longer contributes clean, single-variant-per-customer data back to the Experiment's own results, so it's for deliberate testing — not something that should run in front of real, unmodified traffic.
 
-### What we found and fixed
-
-Building this surfaced a real RevenueCat edge case worth sharing: a project can have Offerings with no paywall attached, and presenting a paywall for one of those hangs silently — no error, no rejection, just a stuck loading state. The fix was filtering to `hasPaywall === true` before resolving which offering to present, with a timeout left in place as a backstop against any other cause of the same symptom.
-
 ## Stack
 
 Next.js 16, React 19, Tailwind v4, `@revenuecat/purchases-js`.
