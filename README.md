@@ -4,7 +4,9 @@ Carrypost is a home for short fiction — longer than an article, shorter than a
 
 ## Demo & recordings
 
-A walkthrough of the landing page is included in this repo: [`Carrypost_LandingPage.mov`](./Carrypost_LandingPage.mov). Screen recordings of 2 glitches found while building and testing this are in this Google Drive folder:
+A walkthrough of the landing page is included in this repo: [`Carrypost_LandingPage.mov`](./Carrypost_LandingPage.mov).
+
+While building this, I found glitches on RevenueCat's own dashboard ([app.revenuecat.com](https://app.revenuecat.com/)) — screen recordings of them are in this Google Drive folder:
 
 **[Carrypost demo & recordings](https://drive.google.com/drive/folders/1GHoJtCNvjH0_YlQ8lXQ5fU55im_77FLn?usp=sharing)**
 
