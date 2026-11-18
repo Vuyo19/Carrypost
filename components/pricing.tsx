@@ -8,11 +8,11 @@ export function Pricing() {
     <section id="pricing" className="border-t border-border">
       <div className="mx-auto max-w-2xl px-6 py-24 text-center sm:px-8">
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Pay once. Get the admin off your plate.
+          Read some for free. Unlock the rest soon.
         </h2>
         <p className="mt-4 text-muted-foreground">
-          No monthly subscription. Use Carrypost when life changes, then move
-          on.
+          Carrypost is free to read today. A membership for the full library
+          is on its way.
         </p>
 
         <dl className="mt-16 divide-y divide-border border-y border-border text-left">
@@ -33,7 +33,7 @@ export function Pricing() {
           variant="outline"
           className="mt-10 h-11 rounded-full border-white/70 bg-transparent px-8 text-base text-foreground hover:bg-white hover:text-primary-foreground"
         >
-          Start my change
+          Start reading
         </Button>
       </div>
     </section>

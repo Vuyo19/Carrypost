@@ -6,8 +6,8 @@ import type { Me } from "@/lib/use-me";
 
 /**
  * Set once by the (app) layout's single useMe() call — components below it
- * (AppNavbar, eventually the wizard) read from here instead of each firing
- * their own request to GET /auth/me.
+ * (AppNavbar and friends) read from here instead of each firing their own
+ * request to GET /auth/me.
  */
 const MeContext = createContext<Me | null>(null);
 

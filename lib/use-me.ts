@@ -22,10 +22,12 @@ export type Me = {
   id: string;
   email: string;
   displayName: string | null;
+  /** Carried over from the address-change dispatcher's OAuth model (see
+   *  CarrypostBackend's app/api/v1/routes/auth.py) — the backend still
+   *  returns these, but nothing on the reading site reads them now that
+   *  there's no dispatch step to gate. Safe to drop once the backend's
+   *  own address-change surface is retired. */
   connectedAccounts: ConnectedAccount[];
-  /** False for an Apple-only sign-in — see CarrypostBackend's
-   *  app/services/oauth/apple.py. The wizard should prompt to connect
-   *  Google/Microsoft before dispatch, not fail silently at Pay. */
   canDispatch: boolean;
 };
 

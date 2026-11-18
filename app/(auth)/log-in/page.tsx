@@ -10,7 +10,7 @@ export default function LogInPage() {
           Welcome back
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Pick up where your last change left off.
+          Pick up where you left off.
         </p>
       </div>
 
@@ -26,6 +26,15 @@ export default function LogInPage() {
         New to Carrypost?{" "}
         <Link href="/sign-up" className="font-medium text-primary">
           Create an account
+        </Link>
+      </p>
+
+      <p className="mt-3 text-center">
+        <Link
+          href="/library"
+          className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
+        >
+          Skip for now
         </Link>
       </p>
     </div>

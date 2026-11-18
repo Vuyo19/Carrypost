@@ -1,25 +1,18 @@
 import {
-  GitBranch,
-  Headset,
-  ListChecks,
-  Mail,
-  Route,
-  ScanSearch,
-  Send,
-  Webhook,
+  Ban,
+  Bookmark,
+  BookOpen,
+  Clock3,
+  Globe,
+  Lock,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
-/** The 6 accounts named in the v9 hero diagram — reused for the hero's
- *  simplified provider list. */
-export const HERO_PROVIDERS = [
-  "Subscriptions",
-  "Mobile account",
-  "Medical scheme",
-  "Retail account",
-  "Insurance policy",
-  "Internet provider",
-] as const;
+import { CATEGORIES } from "@/lib/story-data";
+
+/** The 6 genres on the shelf — reused for the hero's fan-out diagram. */
+export const GENRES = CATEGORIES;
 
 export type Step = {
   number: string;
@@ -31,31 +24,30 @@ export type Step = {
 export const HOW_IT_WORKS_STEPS: Step[] = [
   {
     number: "1",
-    title: "Find who needs to know",
+    title: "Open a story",
     description:
-      "With your permission, Carrypost helps surface the services you already use.",
-    icon: ScanSearch,
+      "Browse the shelf by genre, or let a new one find you on the home page.",
+    icon: BookOpen,
   },
   {
     number: "2",
-    title: "Choose your accounts",
+    title: "Read in one sitting",
     description:
-      "Review the list and choose exactly who should receive your change.",
-    icon: ListChecks,
+      "Most stories run 10–20 minutes — long enough to matter, short enough to finish.",
+    icon: Clock3,
   },
   {
     number: "3",
-    title: "Tell us once",
+    title: "Pick up where you left off",
     description:
-      "Enter your new address once instead of typing it again and again.",
-    icon: GitBranch,
+      "Your place is saved to your account, not to a device or a download.",
+    icon: Bookmark,
   },
   {
     number: "4",
-    title: "We carry the change",
-    description:
-      "Carrypost sends, guides and tracks the update until you know what is done.",
-    icon: Send,
+    title: "New stories, regularly",
+    description: "Fresh short fiction is added to the shelf every week.",
+    icon: Sparkles,
   },
 ];
 
@@ -64,44 +56,44 @@ export type Channel = {
   icon: LucideIcon;
 };
 
-export const PROPAGATION_CHANNELS: Channel[] = [
-  { label: "Email", icon: Mail },
-  { label: "API", icon: Webhook },
-  { label: "Support", icon: Headset },
-  { label: "Guided", icon: Route },
+export const READING_RULES: Channel[] = [
+  { label: "No downloads", icon: Lock },
+  { label: "No PDFs", icon: Ban },
+  { label: "No app to install", icon: Globe },
+  { label: "Browser only", icon: BookOpen },
 ];
 
 export const PRICING_ROWS = [
-  { label: "One address change", value: "One-off fee" },
-  { label: "Account discovery + update flow", value: "Included" },
-  { label: "Clear price before you confirm", value: "No surprises" },
+  { label: "Start reading", value: "Free" },
+  { label: "New stories", value: "Added every week" },
+  { label: "Full library + membership", value: "Coming soon" },
 ];
 
 export const FAQ_ITEMS = [
   {
-    question: "What does Carrypost actually do?",
+    question: "What is Carrypost?",
     answer:
-      "You update your address once, choose the accounts that need it, and Carrypost helps send, guide and track those updates.",
+      "A library of short stories, written to be read in one sitting. Browse the shelf, open one, and start reading — right there on the page.",
   },
   {
-    question: "Will every account update automatically?",
+    question: "How long are the stories?",
     answer:
-      "Not always. Some providers can be handled directly; others may still need you to verify yourself or upload documents.",
+      "Longer than an article, shorter than a book. Most take 10–20 minutes to read, start to finish.",
   },
   {
-    question: "Why connect my email?",
+    question: "Can I download or print a story?",
     answer:
-      "It helps Carrypost find services you already use, so you do not have to remember every account from scratch.",
+      "No. Every story on Carrypost is read on the site and nowhere else — there's no download, export, or app. Just the page.",
   },
   {
-    question: "What about banks and SARS?",
+    question: "Is it free?",
     answer:
-      "They may still require direct authentication, proof of residence or other regulated checks. Carrypost guides the steps.",
+      "Yes, for now. Everything on the shelf is free to read today. A membership for the full library is on its way.",
   },
   {
-    question: "Is this a subscription?",
+    question: "Do I need an account?",
     answer:
-      "No. Carrypost is designed for moments of change: pay once, complete the update, and leave.",
+      "You need one to keep your place in a story and pick up where you left off. Sign up with Google, Microsoft, or Apple — no passwords.",
   },
 ] as const;
 

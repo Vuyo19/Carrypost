@@ -14,8 +14,8 @@ export function Faq() {
           A few things you may be wondering.
         </h2>
         <p className="mt-4 text-muted-foreground">
-          The short version: Carrypost helps you stop repeating the same
-          admin everywhere.
+          The short version: a library of short stories, read right here and
+          nowhere else.
         </p>
 
         <Accordion className="mt-12">
@@ -32,7 +32,7 @@ export function Faq() {
         </Accordion>
 
         <p className="mt-12 text-sm font-medium">
-          Less repetition. More certainty.
+          Fewer tabs. More finished stories.
         </p>
       </div>
     </section>

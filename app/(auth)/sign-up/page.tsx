@@ -10,7 +10,7 @@ export default function SignUpPage() {
           Create your account
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Start with the move. Nothing more.
+          Start reading. Nothing more to set up.
         </p>
       </div>
 
@@ -26,6 +26,15 @@ export default function SignUpPage() {
         Already have an account?{" "}
         <Link href="/log-in" className="font-medium text-primary">
           Log in
+        </Link>
+      </p>
+
+      <p className="mt-3 text-center">
+        <Link
+          href="/library"
+          className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
+        >
+          Skip for now
         </Link>
       </p>
     </div>

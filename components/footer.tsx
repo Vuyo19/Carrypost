@@ -19,7 +19,7 @@ export function Footer() {
         </nav>
 
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Carrypost. South Africa.
+          © {new Date().getFullYear()} Carrypost. Short stories, read here.
         </p>
       </div>
     </footer>

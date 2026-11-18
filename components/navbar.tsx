@@ -36,7 +36,7 @@ export function Navbar() {
             variant="outline"
             className="rounded-full border-white/70 bg-transparent px-5 text-base text-foreground hover:bg-white hover:text-primary-foreground"
           >
-            Get started
+            Start reading
           </Button>
         </div>
 
@@ -68,7 +68,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-2 rounded-full border border-white/70 px-4 py-3 text-center text-base font-medium text-foreground"
           >
-            Get started
+            Start reading
           </Link>
         </nav>
       )}
